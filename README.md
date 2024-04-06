@@ -32,7 +32,7 @@ docker compose up -d
 
 This project serves as a basic boilerplate for a Docker Compose application. You can extend this example by defining new services in the `compose.yml` file according to the requirements of your application.
 
-## Cleaning Up the Services
+## Cleanup
 
 If you're build your images brefore, running `docker compose down` won't delete your images by default. If you want to also remove the images, you can use:
 
