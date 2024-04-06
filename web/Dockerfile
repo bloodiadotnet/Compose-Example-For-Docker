@@ -10,10 +10,6 @@ RUN apt-get update && apt-get install -y \
         unzip \
         zip
 
-RUN curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-        && unzip -q awscliv2.zip \
-        && ./aws/install
-
 EXPOSE 80
 
 HEALTHCHECK --interval=5s --timeout=5s CMD curl -f http://localhost/ || exit 1
