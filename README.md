@@ -40,7 +40,7 @@ If you're build your images brefore, running `docker compose down` won't delete 
 docker compose down --rmi all
 ```
 
-This will remove all images that were used by any service in your `compose.yml` file. If you wwant to keep your images, you can continue using.
+This will remove all images that were used by any service in your `compose.yml` file. If you want to keep your images, you can continue using.
 
 ```bash
 docker compose down
