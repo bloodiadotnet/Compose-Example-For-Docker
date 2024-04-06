@@ -28,6 +28,8 @@ If your Docker images do not need to be built, use:
 docker compose up -d
 ```
 
+4. Once your services are running, open a web browser and navigate to `http://localhost/`. Depending on how your Docker Compose application is configured, you may need to append a specific port number (like http://localhost:80).
+
 ## Customizing Your Docker Compose Application
 
 This project serves as a basic boilerplate for a Docker Compose application. You can extend this example by defining new services in the `compose.yml` file according to the requirements of your application.
