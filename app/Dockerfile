@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
 	lsof \
 	unzip \
 	zip \
-	&& docker-php-ext-install pdo_mysql mysqli
+	&& docker-php-ext-install pdo_mysql mysqli \
+	&& rm -rf /var/lib/apt/lists/*
 
 EXPOSE 9000
 
