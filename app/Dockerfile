@@ -12,10 +12,6 @@ RUN apt-get update && apt-get install -y \
 	zip \
 	&& docker-php-ext-install pdo_mysql mysqli
 
-RUN curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-	&& unzip -q awscliv2.zip \
-	&& ./aws/install
-
 EXPOSE 9000
 
 HEALTHCHECK --interval=5s --timeout=5s CMD lsof -i:9000 || exit 1
