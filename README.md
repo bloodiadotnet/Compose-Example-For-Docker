@@ -16,21 +16,10 @@ After ensuring the above prerequisite is met, follow these steps:
 
 1. Clone or download this repository.
 2. Navigate to the root directory of the project in your terminal.
-
-### For Windows Users
-
-If you're using PowerShell, use the following command:
+3. Once your project is set up, if your Docker Images need to be build, run the following command to build your images and start your services in the background:
 
 ```bash
-docker compose up
-```
-
-### For Mac Users
-
-If you're using a Unix-like shell (such as Bash), use the following command:
-
-```bash
-docker compose up
+docker compose up -d --build
 ```
 
 ## Customizing Your Docker Compose Application
@@ -39,24 +28,12 @@ This project serves as a basic boilerplate for a Docker Compose application. You
 
 ## Cleaning Up the Services
 
-When you're done with the services and want to clean them up, use the following command:
-
-### For Windows Users
-
-In PowerShell, use the following command:
+If you're build your images brefore, running `docker compose down` won't delete your images by default. If you want to also remove the images, you can use:
 
 ```bash
-docker compose down
+docker compose down --rmi all
 ```
 
-### For Mac Users
-
-In a Unix-like shell such as Bash, use the following command:
-
-```bash
-docker compose down
-```
-
-This command will stop and remove all the services defined in your `compose.yml` file.
+This will remove all images that were used by any service in your `compose.yml` file. If you wwant to keep your images, you can continue using.
 
 Use this project as a starting point to fully harness the capabilities of Docker Compose. Make sure to customize and get the most out of this example for your specific needs!
