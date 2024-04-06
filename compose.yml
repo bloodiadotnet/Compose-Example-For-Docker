@@ -1,0 +1,62 @@
+services:
+  # Web定義
+  web:
+    container_name: web
+    image: web:latest
+    build:
+      context: web
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    environment:
+      FASTCGI_PASS: app
+      TZ: ${TZ}
+      LANG: ${LANG}
+    depends_on:
+      app:
+        condition: service_healthy
+    working_dir: /var/www/html
+  # App定義
+  app:
+    container_name: app
+    image: app:latest
+    build:
+      context: app
+      dockerfile: Dockerfile
+    ports:
+      - 9000:9000
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PORT: ${MYSQL_PORT}
+      TZ: ${TZ}
+      LANG: ${LANG}
+    depends_on:
+      db:
+        condition: service_healthy
+    working_dir: /var/www/html
+  # DB定義
+  db:
+    container_name: db
+    image: mysql:latest
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_PORT}
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST} # MySQL接続は"localhost"ではなく、"127.0.0.1"を指定
+      MYSQL_USER: ${MYSQL_USER} # MySQL初期ユーザーを作成
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD} # MySQL初期パスワードを設定
+      MYSQL_DATABASE: ${MYSQL_DATABASE} # MySQL初期データベースを作成
+      MYSQL_PORT: ${MYSQL_PORT} # MySQLポート番号
+      MYSQL_RANDOM_ROOT_PASSWORD: yes # rootユーザーの初期パスワード（ランダム文字列）で設定
+      TZ: ${TZ}
+      LANG: ${LANG}
+    volumes:
+      - ./db/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -h $${MYSQL_HOST} -u $${MYSQL_USER} -p$${MYSQL_PASSWORD} -P$${MYSQL_PORT} -e 'show databases'"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
