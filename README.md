@@ -49,3 +49,6 @@ docker compose down
 ```
 
 Use this project as a starting point to fully harness the capabilities of Docker Compose. Make sure to customize and get the most out of this example for your specific needs!
+
+## Author
+[@bloodiadotnet](https://twitter.com/bloodiadotnet)
