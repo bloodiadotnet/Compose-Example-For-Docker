@@ -16,13 +16,13 @@ After ensuring the above prerequisite is met, follow these steps:
 
 1. Clone or download this repository.
 2. Navigate to the root directory of the project in your terminal.
-3. Once your project is set up, if your Docker Images need to be build, run the following command to build your images and start your services in the background:
+3. Once your project is set up, if your Docker Images need to be built, run the following command to build your images and start your services in the background:
 
 ```bash
 docker compose up -d --build
 ```
 
-If your Docker images do not need to be build, use:
+If your Docker images do not need to be built, use:
 
 ```bash
 docker compose up -d
