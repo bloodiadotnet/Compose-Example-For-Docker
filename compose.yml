@@ -49,10 +49,14 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: yes
       TZ: ${TZ}
       LANG: ${LANG}
+    restart: always
     volumes:
       - ./db/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
     healthcheck:
-      test: ["CMD-SHELL", "mysql -h $${MYSQL_HOST} -u $${MYSQL_USER} -p$${MYSQL_PASSWORD} -P$${MYSQL_PORT} -e 'show databases'"]
+      test: [
+              "CMD-SHELL",
+              "mysql -h $${MYSQL_HOST} -u $${MYSQL_USER} -p$${MYSQL_PASSWORD} -P$${MYSQL_PORT} -e 'show databases'"
+            ]
       interval: 5s
       timeout: 5s
       retries: 3
